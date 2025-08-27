@@ -119,8 +119,11 @@ class ProducedArtifact(Artifact):
 class FetchedArtifact(ProducedArtifact):
     """Represents an artifact that is to be fetched."""
 
-    def __init__(self, group: Union[ArtifactGroup, str], url: str):
-        name = Path(urllib.parse.urlparse(url).path).name
+    def __init__(
+        self, group: Union[ArtifactGroup, str], url: str, *, name: str | None = None
+    ):
+        if name is None:
+            name = Path(urllib.parse.urlparse(url).path).name
         super().__init__(group, name, FetchedArtifact._callback)
         self.url = url
 

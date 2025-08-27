@@ -1,0 +1,5 @@
+{
+    "device": "hip",
+    "mlir": "https://sharkpublic.blob.core.windows.net/sharkpublic/sai/sdxl-prompt-encoder/model.mlir",
+    "compiler_flags": []
+}

@@ -2,10 +2,12 @@
 
 | Field Name                     | Required | Type    | Description                                                                                                                                      |
 | ------------------------------ | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| mlir                           | required | string  | URL that provides the MLIR blob                                                                                                                  |
+| inputs                         | optional | array   | An array of objects that provides the input blob and the expected input value (ex: `{"source" :"", "value": ""}`, the value field is optional)   |
+| weights                        | optional | array   | (ex: `{"source": "", scope: ""}`), if not provided, will use flat weights.
+| modules                        | required | array   | An array containing names of compiled modules to run. The modules should be added in order of dependency.
 | device                         | required | string  | The device to run the threshold tests on                                                                                                         |
 | compiler_flags                 | optional | array   | Compiler flag options for the iree compilation                                                                                                   |
-| xfail                          | optional | dict    | A dict containing which skus to fail for and the reason for failure, (ex: `{"cpu": "test is broken"}`)
-| tuner_file                     | optional | dict    | Adds a `iree-codegen-transform-dialect-library` compiler flag for a SKU-specific tuner file (ex: `{"mi308": "{tuner_file_name}"}`)               |
+| run_function                   | optional | string  | The function that the `iree_run_module` in the threshold tests                                                                                   |
+| xfail                          | optional | array   | If an array is passed in, the compilation tests will fail on the specified chip, ex: `["gfx90a"]`                                                |
 
 Please feel free to look at any JSON examples under a model directory (ex: sd3, sdxl)
